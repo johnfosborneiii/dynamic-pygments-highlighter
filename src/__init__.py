@@ -1,0 +1,1 @@
+"""Pygments entities for filter and styling (highlighting) based on environment variables"""

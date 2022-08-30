@@ -1,0 +1,55 @@
+[tool.poetry]
+name = "dynamic-pygments-highlighter"
+version = "0.0.1"
+description = "Dynamic pygments highlighter that will highlight pygment tokens based on if they match certain environment variables"
+authors = ["John Osborne <johnfosborneiii@gmail.com>"]
+homepage = "https://github.com/johnfosborneiii/dynamic-pygments-highlighter"
+license = "MIT"
+classifiers = [
+    "Development Status :: 1 - Beta",
+    "Environment :: Plugins",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Documentation",
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Text Processing :: Markup",
+]
+packages = [
+    { include = "pygments_filter_dynamic_highlighter.py", from = "src" },
+    { include = "pygments_style_dynamic_highlighter.py", from = "src" },
+]
+readme = "README.md"
+
+[tool.poetry.plugins."pygments.filters"]
+"dynamic-highlighter" = "pygments_filter_dynamic_highlighter:DynamicHighlighterFilter"
+
+[tool.poetry.plugins."pygments.styles"]
+"dynamic-highlighter" = "pygments_style_dynamic_highlighter:DynamicHighlighterStyle"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pygments = ">=2.12"
+
+[tool.poetry.dev-dependencies]
+black = "^20.8b1"
+isort = "^5.8.0"
+tox = "^3.24.3"
+pytest = "^6.2.5"
+
+[tool.isort]
+profile = "black"
+src_paths = ["src"]
+
+[tool.black]
+target-version = ["py38"]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
