@@ -35,8 +35,8 @@ $ source `~/.bashrc`
 
 ```
 cat <<yaml file name>>.yaml | highlight-yaml
-
 ```
+![image](https://user-images.githubusercontent.com/9351962/187477064-284a20ae-1ff5-4bf6-9f3a-6a43d7b70463.png)
 
 Note: You can pipe all sorts of different formats to pygmentize using different Pygment lexers. Pygments will guess the lexer or you can manually set it by leveraging the -l flag (pygmentize on the CLI). Pygment lexers take output and slices them into Python token tuples. There are many pygment lexers that you can read about in the [Pygments Documentation](https://pygments.org/docs/).
 
