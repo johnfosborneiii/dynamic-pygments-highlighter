@@ -1,17 +1,17 @@
-from pygments.token import String, Comment, Keyword, Name, Error, Whitespace, string_to_tokentype
-from pygments.filter import Filter
 from os import environ
 import json
 import re
 
-class DynamicHighlighterFilter(Filter):
+from pygments.token import String
+from pygments.filter import Filter
 
+class DynamicHighlighterFilter(Filter):
     """
-    # Highlight based on environment variables
+    Highlight based on environment variables
+    $PYGMENTS_HIGHLIGHTER_KEY ==> Literal.String.Highlight.Key
+    $PYGMENTS_HIGHLIGHTER_VALUE ==> Literal.String.Highlight.Value
+    Troubleshoot: Output token mapping: pygmentize -f tokens -P style=dynamic-highlighter
     """
-    # $PYGMENTS_HIGHLIGHTER_KEY ==> Literal.String.Highlight.Key 
-    # $PYGMENTS_HIGHLIGHTER_VALUE ==> Literal.String.Highlight.Value
-    # Troubleshoot: Output token mapping: pygmentize -f tokens -P style=dynamic-highlighter
     
     def __init__(self, **options):
         Filter.__init__(self, **options)
@@ -21,9 +21,6 @@ class DynamicHighlighterFilter(Filter):
         env_key_list = json.loads(environ['PYGMENTS_HIGHLIGHTER_KEY'])
         env_value_list = json.loads(environ['PYGMENTS_HIGHLIGHTER_VALUE'])
 
-        #regexpkey = re.compile(r'^.*you.*$')
-        #regexpvalue = re.compile(r'^.*know.*$')
-        
         regexpkey = '(?:% s)' % '|'.join(env_key_list)
         regexpvalue = '(?:% s)' % '|'.join(env_value_list )
         

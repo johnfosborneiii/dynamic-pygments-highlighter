@@ -5,17 +5,17 @@
 """
 
 from pygments.style import Style
-from pygments.token import String,Comment, Error, Generic, Keyword, Literal, Name, Operator, Text
+from pygments.token import Error, Keyword, Literal, Name
 
 
 class DynamicHighlighterStyle(Style):
+    """
+    Highlight based on environment variables
+    $PYGMENTS_HIGHLIGHTER_KEY ==> Literal.String.Highlight.Key 
+    $PYGMENTS_HIGHLIGHTER_VALUE ==> Literal.String.Highlight.Value
+    Troubleshoot: Output token mapping: pygmentize -f tokens -P style=dynamic-highlighter
+    """
     
-    """
-    # Highlight based on environment variables
-    """
-    # $PYGMENTS_HIGHLIGHTER_KEY ==> Literal.String.Highlight.Key 
-    # $PYGMENTS_HIGHLIGHTER_VALUE ==> Literal.String.Highlight.Value
-    # Troubleshoot: Output token mapping: pygmentize -f tokens -P style=dynamic-highlighter
     
     default_style = ''
 
